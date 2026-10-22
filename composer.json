@@ -4,6 +4,17 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["mobile-money", "africa", "payment", "fedapay", "kkiapay", "paydunya", "cinetpay", "xof"],
+    "homepage": "https://github.com/aspic36/momokit",
+    "authors": [
+        {
+            "name": "aspickiller",
+            "homepage": "https://github.com/aspic36"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/aspic36/momokit/issues",
+        "source": "https://github.com/aspic36/momokit-core"
+    },
     "require": {
         "php": "^8.3",
         "psr/http-client": "^1.0",
