@@ -8,6 +8,7 @@ use MomoKit\Core\Contracts\Driver;
 use MomoKit\Core\DTO\CollectRequest;
 use MomoKit\Core\DTO\Payment;
 use MomoKit\Core\Exceptions\UnknownDriverException;
+use MomoKit\Core\Testing\MobileMoneyFake;
 
 final class MobileMoneyManager
 {
@@ -52,6 +53,16 @@ final class MobileMoneyManager
     public function drivers(): array
     {
         return $this->drivers;
+    }
+
+    /**
+     * Replace every registered driver with an in-memory fake.
+     *
+     * @param  string  ...$drivers  Extra driver names to fake, even without credentials.
+     */
+    public function fake(string ...$drivers): MobileMoneyFake
+    {
+        return MobileMoneyFake::install($this, ...$drivers);
     }
 
     /**
