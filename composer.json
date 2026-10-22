@@ -1,0 +1,31 @@
+{
+    "name": "momokit/core",
+    "description": "Unified API for West African mobile money aggregators (FedaPay, KkiaPay, PayDunya, CinetPay) with a built-in test mode.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["mobile-money", "africa", "payment", "fedapay", "kkiapay", "paydunya", "cinetpay", "xof"],
+    "require": {
+        "php": "^8.3",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.1",
+        "psr/http-message": "^1.1|^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MomoKit\\Core\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MomoKit\\Core\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
