@@ -19,6 +19,7 @@ final readonly class CollectRequest
         public ?string $description = null,
         public array $metadata = [],
         public ?string $reference = null,
+        public ?string $callbackUrl = null,
     ) {
         if ($this->amount <= 0) {
             throw new InvalidAmountException('The amount must be a positive integer expressed in the smallest currency unit.');
@@ -38,6 +39,7 @@ final readonly class CollectRequest
         array $metadata = [],
         ?string $reference = null,
         ?string $defaultCountryCode = null,
+        ?string $callbackUrl = null,
     ): self {
         return new self(
             amount: $amount,
@@ -46,6 +48,7 @@ final readonly class CollectRequest
             description: $description,
             metadata: $metadata,
             reference: $reference,
+            callbackUrl: $callbackUrl,
         );
     }
 }

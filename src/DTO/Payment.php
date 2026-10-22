@@ -24,6 +24,7 @@ final readonly class Payment
         public ?string $description = null,
         public array $metadata = [],
         public ?string $reference = null,
+        public ?string $checkoutUrl = null,
         public ?DateTimeImmutable $createdAt = null,
     ) {
     }
