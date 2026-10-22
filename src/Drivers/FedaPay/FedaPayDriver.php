@@ -29,7 +29,7 @@ final class FedaPayDriver implements Driver, SupportsWebhooks
      * FedaPay phone numbers are sent as E.164 plus an ISO 3166-1 alpha-2
      * country code. Only the countries served by FedaPay are mapped.
      *
-     * @var array<string, string>
+     * @var array<int, string>
      */
     private const DIALING_CODES = [
         '229' => 'bj',
@@ -286,15 +286,22 @@ final class FedaPayDriver implements Driver, SupportsWebhooks
     {
         $digits = ltrim($phone->e164, '+');
         $code = substr($digits, 0, 3);
+        $dialing = (int) $code;
 
-        return self::DIALING_CODES[$code] ?? throw new UnsupportedCountryException(sprintf(
+        if (isset(self::DIALING_CODES[$dialing])) {
+            return self::DIALING_CODES[$dialing];
+        }
+
+        $supported = [];
+
+        foreach (self::DIALING_CODES as $supportedDialing => $iso) {
+            $supported[] = '+'.$supportedDialing.' ('.$iso.')';
+        }
+
+        throw new UnsupportedCountryException(sprintf(
             'FedaPay does not support the phone country code "+%s" (supported: %s).',
             $code,
-            implode(', ', array_map(
-                static fn (string $dialing, string $iso): string => '+'.$dialing.' ('.$iso.')',
-                array_keys(self::DIALING_CODES),
-                array_values(self::DIALING_CODES),
-            )),
+            implode(', ', $supported),
         ));
     }
 
